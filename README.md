@@ -9,9 +9,9 @@ Ensure you have Python 3.9 installed on your system, and that you have venv inst
 5. In the integrated terminal, run `pip install -r requirements.txt`, this will install all required packages.
 
 ### Frontend
-Ensure that you have Node v16 or later installed on your system, and make sure you have yarn installed on your system.
+Ensure that you have Node v16 installed on your system.
 1. Open up the frontend folder in your favorite text editor.
-2. In the integrated terminal, run `yarn install`, this will install all required packages for the project.
+2. In the integrated terminal, run `npm i`, this will install all required packages for the project.
 
 #### Normal Development
 To run the frontend project in development mode, run `yarn start` in terminal.
