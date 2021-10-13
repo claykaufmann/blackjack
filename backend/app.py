@@ -1,11 +1,28 @@
 from flask import Flask
+import json
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+def app():  # put application's code here
+    deck = Deck()
+
+
+    return "hi"
+
+@app.route('/shuffle')
+def shuffle():
+    deck.random()
+
+
+@app.route('/deal_card')
+def deal_card():
+
+    json = json
+
+    card = json.card
+
 
 
 if __name__ == '__main__':
