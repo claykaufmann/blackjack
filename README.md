@@ -18,4 +18,42 @@ To run the frontend project in development mode, run `yarn start` in terminal.
 To run tests, run `yarn test` in terminal.
 To build the app for production, run `yarn build` in terminal.
 
+## JSON Structure
+A single card has this form:
+```json
+{
+    "value": 10, // or respective value of card
+    "suit": "Diamonds" // or other suit
+}
+```
+
+A full example is this:
+```json
+{
+  "player": {
+    "cards": [
+      {
+        "value": 5,
+        "suit": "Diamonds"
+      },
+      {
+        "isLow": "false",
+        "value": 11
+      }
+    ]
+  },
+  "dealer": {
+    "cards": [
+      {
+        "value": 5
+      }, 
+      {
+        "isLow": "false",
+        "value": 11
+      }
+    ]
+  }
+}
+```
+
 
