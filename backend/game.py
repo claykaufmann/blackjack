@@ -9,5 +9,8 @@ class Game():
     def __init__(self, id) -> None:
         self.id = id
         self.player = Player()
-        self.dealer = Dealer()
+        self.dealer = Player()
         self.deck = Deck()
+
+    def action_input():
+        pass

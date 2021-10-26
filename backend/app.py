@@ -22,6 +22,24 @@ def start():
     # add the game to the dictionary of games
     games[id] = game
 
+    # get initial deal
+
+    # return game id, and cards to JS
+    return "hello world"
+
+
+@app.route('/api/game_action')
+def game_action(req):
+    # get action from req
+
+    # get ID from req
+
+    # call necessary functions
+
+    # return relevant information
+
+    return "hello world"
+
 
 if __name__ == '__main__':
     app.run()
