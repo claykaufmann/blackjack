@@ -1,4 +1,6 @@
 from flask import Flask
+from lib.create_game_id import create_game_id
+from game import Game
 import json
 
 app = Flask(__name__)
@@ -7,7 +9,7 @@ app = Flask(__name__)
 games = {}
 
 
-@app.route('start')
+@app.route('/api/start')
 def start():
     """
     this route creates a new game id, and creates a new game, passing in the ID
@@ -20,57 +22,23 @@ def start():
     # add the game to the dictionary of games
     games[id] = game
 
+    # get initial deal
 
-@app.route('/api/initial_deal')
-def initial_deal(id):
-    """
-    takes in a game ID, which allows us to decipher which game...
-    """
-    player_card1 = Deck.deal()
-    player_card2 = Deck.deal()
-
-    json_card1 = player_card1.to_json()
-
-    return "{'player': 'cards': [json_card1]"
-
-    actions = req
-    # do initial deal
-    json = "hello"  # this becomes the JSON file
-
-    return json
+    # return game id, and cards to JS
+    return "hello world"
 
 
-@app.route('/api/start')
-def app():  # put application's code here
-    deck = Deck()
-    player = Player()
+@app.route('/api/game_action')
+def game_action(req):
+    # get action from req
 
-    # wait on information?
+    # get ID from req
 
-    return "hi"
+    # call necessary functions
 
+    # return relevant information
 
-@app.route('/api/shuffle')
-def shuffle():
-    deck.random()
-
-    return json_string
-
-
-@app.route('/api/deal_card')
-def deal_card():
-
-    json = json
-
-    card = json.card
-
-
-@app.route('api/player_actions')
-def player_action():
-    if "hit":
-        card = Deck.deal()
-
-    return json
+    return "hello world"
 
 
 if __name__ == '__main__':
