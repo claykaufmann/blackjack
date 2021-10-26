@@ -1,12 +1,18 @@
 from flask import Flask
 from lib.create_game_id import create_game_id
 from game import Game
+import time
 import json
 
 app = Flask(__name__)
 
 # this is to keep track of all games, key is an id, value is the game...
 games = {}
+
+
+@app.route('/time')
+def get_current_time():
+    return {'time': time.time()}
 
 
 @app.route('/api/start')

@@ -14,9 +14,13 @@ Ensure that you have Node v16 installed on your system.
 2. In the integrated terminal, run `npm i`, this will install all required packages for the project.
 
 #### Normal Development
-To run the frontend project in development mode, run `yarn start` in terminal.
-To run tests, run `yarn test` in terminal.
-To build the app for production, run `yarn build` in terminal.
+To run the project on your local machine, do the following:
+1. Open a terminal window, and cd into the `frontend/` directory.
+2. Type `npm run start-api` into the terminal window and hit enter.
+3. Open a second terminal window, again cd into the `frontend/` directory.
+4. Type `npm start` into the terminal window, and hit enter.
+5. On your web browser, navigate to the link that the second command returned in
+   the terminal window.
 
 ## JSON Structure
 A single card has this form:
