@@ -1,6 +1,7 @@
 # deck class
 
 import random
+from backend.card import Card
 
 # list containing the suits
 suitsList = ["Spades", "Clubs", "Diamonds", "Hearts"]
