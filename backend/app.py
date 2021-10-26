@@ -14,7 +14,7 @@ def start():
     """
     this route creates a new game id, and creates a new game, passing in the ID
     """
-    id = create_game_id()
+    id = create_game_id(games)
 
     # create the new game, passing in the id
     game = Game(id)
