@@ -1,10 +1,5 @@
-from typing import Dict
-
-
-def create_game_id(games: Dict):
+def create_game_id(games: dict) -> int:
     # collect all existing game ids
-    last_id = 0
-
     keys = sorted(games.keys())
 
     last_key = keys[len(keys) - 1]
