@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request
+from werkzeug.utils import redirect
 from lib.create_game_id import create_game_id
 from game import Game
 import time
@@ -29,18 +30,25 @@ def start():
     games[id] = game
 
     # get initial deal
+    game.initial_deal()
 
     # return game id, and cards to JS
-    return "hello world"
+    player_cards = game.player.cards
+    dealer_cards = game.dealer.cards
 
 
-@app.route('/api/game_action')
-def game_action(req):
+@app.route('/api/game_action/<game_id>')
+def game_action(game_id):
+    if game_id not in games.keys():
+        return "fatal error"
+
     # get action from req
+    data = request.get_json()
 
     # get ID from req
 
     # call necessary functions
+    games[game_id].game_flow(data.action)
 
     # return relevant information
 
