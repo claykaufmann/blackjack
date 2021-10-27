@@ -23,6 +23,8 @@ class Deck:
                 # anything 10 or higher is automatically a 10
                 if i <= 9:
                     self.cards.append(Card(s, i))
+                # any card that is an 11 is automatically and Ace
+                # Ace card will be handled in player class
                 elif i == 11:
                     self.cards.append(Card("Ace", i))
                 else:
