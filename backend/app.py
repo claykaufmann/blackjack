@@ -16,7 +16,7 @@ def start():
     """
     id = create_game_id(games)
 
-    games[id] = "hello world"
+    games[id] = id
 
     return {'gameId': id}
 
