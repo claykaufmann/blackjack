@@ -1,7 +1,7 @@
 # deck class
 
 import random
-from backend.card import Card
+from card import Card
 
 # list containing the suits
 suitsList = ["Spades", "Clubs", "Diamonds", "Hearts"]
@@ -22,6 +22,8 @@ class Deck:
                 # anything 10 or higher is automatically a 10
                 if i <= 9:
                     self.cards.append(Card(s, i))
+                elif i == 11:
+                    self.cards.append(Card("Ace", i))
                 else:
                     self.cards.append(Card(s, 10))
 
