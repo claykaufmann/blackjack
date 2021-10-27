@@ -1,18 +1,12 @@
-from flask import Flask
+from flask import Flask, request
 from lib.create_game_id import create_game_id
 from game import Game
 import time
-import json
 
 app = Flask(__name__)
 
 # this is to keep track of all games, key is an id, value is the game...
 games = {}
-
-
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
 
 
 @app.route('/api/start')
@@ -22,6 +16,10 @@ def start():
     """
     id = create_game_id(games)
 
+    games[id] = id
+
+    return {'gameId': id}
+
     # create the new game, passing in the id
     game = Game(id)
 
@@ -29,18 +27,49 @@ def start():
     games[id] = game
 
     # get initial deal
+    game.initial_deal()
 
     # return game id, and cards to JS
-    return "hello world"
+    player_cards = game.player.cards
+    dealer_cards = game.dealer.cards
+
+    return {
+        'player': {
+            # TODO this needs to be turned into json by using the to_json card method
+            'cards': player_cards
+        },
+        'dealer': {
+            'cards': dealer_cards
+        },
+        'game_id': id
+    }
 
 
-@app.route('/api/game_action')
-def game_action(req):
-    # get action from req
+@app.route('/api/test_game/<game_id>')
+def test_game(game_id):
+    if game_id not in games.keys():
+        return {
+            'error': "Game ID not found"
+        }
 
-    # get ID from req
+    data = request.get_json()
+
+    return {
+        'data': data,
+        'game_id': game_id
+    }
+
+
+@app.route('/api/game_action/<game_id>')
+def game_action(game_id):
+    if game_id not in games.keys():
+        return "fatal error"
+
+    # get action json data
+    data = request.get_json()
 
     # call necessary functions
+    games[game_id].game_flow(data.action)
 
     # return relevant information
 

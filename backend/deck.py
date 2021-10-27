@@ -6,6 +6,7 @@ from card import Card
 # list containing the suits
 suitsList = ["Spades", "Clubs", "Diamonds", "Hearts"]
 
+
 class Deck:
 
     # initializer
@@ -38,4 +39,3 @@ class Deck:
 
         # return (deal) the randomly selected card
         return dealtCard
-

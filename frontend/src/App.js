@@ -1,35 +1,40 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [gameId, setGameId] = useState(0);
 
-  useEffect(() => {
-    fetch('/time')
+  const [gameHasStarted, setGameStart] = useState('');
+
+  const gameStart = (event) => {
+    // check if the game has already started
+    if (gameHasStarted) {
+      return;
+    }
+
+    event.preventDefault();
+
+    fetch('/api/start')
       .then((res) => res.json())
       .then((data) => {
-        setCurrentTime(data.time);
+        setGameId(data.gameId);
       });
-  }, []);
+
+    setGameStart(true);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>The current time is {currentTime}.</p>
+        <p>The game ID is {gameId}</p>
+        {gameHasStarted ? null : (
+          <button type="button" onClick={gameStart}>
+            Start Game!
+          </button>
+        )}
       </header>
     </div>
   );
