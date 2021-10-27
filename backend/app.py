@@ -36,6 +36,7 @@ def start():
 
     return {
         'player': {
+            # TODO this needs to be turned into json by using the to_json card method
             'cards': player_cards
         },
         'dealer': {

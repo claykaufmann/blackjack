@@ -8,7 +8,7 @@ Game class represents a game of blackjack
 class Game():
     def __init__(self, id) -> None:
         self.id = id
-        self.player = Player()
+        self.player = Player()  # TODO have player classes instantiate correctly
         self.dealer = Player()
         self.deck = Deck()
 
@@ -19,9 +19,11 @@ class Game():
         dealer_card1 = self.deck.deal()
         dealer_card2 = self.deck.deal()
 
+        # TODO update this to correctly add cards when methods are implemented
         self.player.cards = [player_card1, player_card2]
         self.dealer.cards = [dealer_card1, dealer_card2]
 
+    # TODO impement this method...
     def action_input(self, action):
         if action == "hit":
             new_card = self.deck.deal()
