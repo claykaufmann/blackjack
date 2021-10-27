@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [gameId, setGameId] = useState(0);
 
-  useEffect(() => {
-    fetch('/time')
+  const gameStart = (event) => {
+    event.preventDefault();
+
+    fetch('/api/start')
       .then((res) => res.json())
       .then((data) => {
-        setCurrentTime(data.time);
+        setGameId(data.gameId);
       });
-  }, []);
+  };
 
   return (
     <div className="App">
@@ -29,7 +31,10 @@ const App = () => {
         >
           Learn React
         </a>
-        <p>The current time is {currentTime}.</p>
+        <p>The game ID is {gameId}</p>
+        <button type="button" onClick={gameStart}>
+          Start Game!
+        </button>
       </header>
     </div>
   );

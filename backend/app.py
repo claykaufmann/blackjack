@@ -9,17 +9,16 @@ app = Flask(__name__)
 games = {}
 
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
-
-
 @app.route('/api/start')
 def start():
     """
     this route creates a new game id, and creates a new game, passing in the ID
     """
     id = create_game_id(games)
+
+    games[id] = "hello world"
+
+    return {'gameId': id}
 
     # create the new game, passing in the id
     game = Game(id)
@@ -43,6 +42,21 @@ def start():
             'cards': dealer_cards
         },
         'game_id': id
+    }
+
+
+@app.route('/api/test_game/<game_id>')
+def test_game(game_id):
+    if game_id not in games.keys():
+        return {
+            'error': "Game ID not found"
+        }
+
+    data = request.get_json()
+
+    return {
+        'data': data,
+        'game_id': game_id
     }
 
 
