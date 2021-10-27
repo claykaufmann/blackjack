@@ -1,10 +1,11 @@
 # deck class
 
 import random
-from backend.card import Card
+from card import Card
 
 # list containing the suits
 suitsList = ["Spades", "Clubs", "Diamonds", "Hearts"]
+
 
 class Deck:
 
@@ -36,4 +37,3 @@ class Deck:
 
         # return (deal) the randomly selected card
         return dealtCard
-
