@@ -1,9 +1,7 @@
 from flask import Flask, request
-from werkzeug.utils import redirect
 from lib.create_game_id import create_game_id
 from game import Game
 import time
-import json
 
 app = Flask(__name__)
 
@@ -35,6 +33,16 @@ def start():
     # return game id, and cards to JS
     player_cards = game.player.cards
     dealer_cards = game.dealer.cards
+
+    return {
+        'player': {
+            'cards': player_cards
+        },
+        'dealer': {
+            'cards': dealer_cards
+        },
+        'game_id': id
+    }
 
 
 @app.route('/api/game_action/<game_id>')
