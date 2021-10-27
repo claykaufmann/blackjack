@@ -51,10 +51,8 @@ def game_action(game_id):
     if game_id not in games.keys():
         return "fatal error"
 
-    # get action from req
+    # get action json data
     data = request.get_json()
-
-    # get ID from req
 
     # call necessary functions
     games[game_id].game_flow(data.action)
