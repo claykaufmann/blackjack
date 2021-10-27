@@ -1,16 +1,9 @@
 # player class
-
-import deck
-
 class Player:
 
-    def __init__(self) -> None:
+    def __init__(self, isDealer: bool) -> None:
         self.player = Player
-
-    def hit(self):
-    
-    def stay(self):
-    
-    def bet(self):
+        self.cards = []
+        self.is_dealer = isDealer
 
     
