@@ -45,7 +45,7 @@ def start():
     }
 
 
-@app.route('/api/test_game/<game_id>')
+@app.route('/api/test_game/<game_id>', methods=['GET', 'POST'])
 def test_game(game_id):
     if game_id not in games.keys():
         return {
@@ -53,6 +53,10 @@ def test_game(game_id):
         }
 
     data = request.get_json()
+
+    print(game_id)
+
+    print(data.body.name)
 
     return {
         'data': data,
