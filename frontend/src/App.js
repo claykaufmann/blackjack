@@ -6,7 +6,7 @@ import './App.css';
 const App = () => {
   const [gameId, setGameId] = useState(0);
 
-  const [gameHasStarted, setGameStart] = useState('');
+  const [gameHasStarted, setGameStart] = useState(false);
 
   const gameStart = (event) => {
     // check if the game has already started
@@ -30,7 +30,9 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>The game ID is {gameId}</p>
-        {gameHasStarted ? null : (
+        {gameHasStarted ? (
+          <p>Welcome to the game</p>
+        ) : (
           <button type="button" onClick={gameStart}>
             Start Game!
           </button>
