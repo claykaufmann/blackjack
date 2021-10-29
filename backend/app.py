@@ -63,7 +63,7 @@ def test_game(game_id):
 
 @app.route('/api/game_action/<game_id>')
 def game_action(game_id):
-    if game_id not in games.keys():
+    if int(game_id) not in games.keys():
         return "fatal error"
 
     # get action json data
