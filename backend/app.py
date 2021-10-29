@@ -1,7 +1,7 @@
 from flask import Flask, request
 from lib.create_game_id import create_game_id
 from game import Game
-import time
+import logging
 
 app = Flask(__name__)
 
@@ -47,20 +47,17 @@ def start():
 
 @app.route('/api/test_game/<game_id>', methods=['GET', 'POST'])
 def test_game(game_id):
-    if game_id not in games.keys():
+    if int(game_id) not in games.keys():
         return {
             'error': "Game ID not found"
         }
 
     data = request.get_json()
 
-    print(game_id)
-
-    print(data.body.name)
+    app.logger.info(data)
 
     return {
-        'data': data,
-        'game_id': game_id
+        "body": "hello world"
     }
 
 
