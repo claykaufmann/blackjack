@@ -8,6 +8,25 @@ const App = () => {
 
   const [gameHasStarted, setGameStart] = useState(false);
 
+  const [returnData, setReturnData] = useState('');
+
+  const sendData = (event) => {
+    event.preventDefault();
+
+    // FIXME: this is not sending data correctly, flask not receiving data
+    fetch(`api/test_game/${gameId}`, {
+      method: 'POST',
+      body: {
+        name: 'Hi!',
+        action: 'hit',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setReturnData(data.game_id);
+      });
+  };
+
   const gameStart = (event) => {
     // check if the game has already started
     if (gameHasStarted) {
@@ -31,7 +50,12 @@ const App = () => {
         <img src={logo} className="App-logo" alt="logo" />
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
-          <p>Welcome to the game</p>
+          <div>
+            <button type="button" onClick={sendData}>
+              Send Data!
+            </button>
+            <p>{returnData}</p>
+          </div>
         ) : (
           <button type="button" onClick={gameStart}>
             Start Game!
