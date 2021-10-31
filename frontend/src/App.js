@@ -13,6 +13,7 @@ const App = () => {
   const sendData = (event) => {
     event.preventDefault();
 
+    // FIXME: this is not sending data correctly, flask not receiving data
     fetch(`api/test_game/${gameId}`, {
       method: 'POST',
       body: {
