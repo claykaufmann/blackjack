@@ -1,14 +1,11 @@
 # player class
 class Player:
-
-    def __init__(self, isDealer: bool) -> None:
+    def __init__(self, is_dealer: bool) -> None:
         # self.player = Player
         self.cards = []
-        self.is_dealer = isDealer
+        self.is_dealer = is_dealer
         self.value = 0
 
-    def playerValue(cards):
-        value = 0
-        for card in cards:
-            value = value + card.value
-        return value
+    def add_card(self, card):
+        self.cards.append(card)
+        self.value += card.value

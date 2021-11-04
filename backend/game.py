@@ -1,4 +1,5 @@
 from deck import Deck
+from player import Player
 
 """
 Game class represents a game of blackjack
@@ -9,8 +10,8 @@ class Game():
     def __init__(self, id) -> None:
         self.id = id
         # TODO have player classes instantiate correctly
-        self.player = Player(dealer=False)
-        self.dealer = Player(dealer=True)
+        self.player = Player(is_dealer=False)
+        self.dealer = Player(is_dealer=True)
         self.deck = Deck()
         self.game_over = False
 
@@ -25,10 +26,10 @@ class Game():
         self.player.add_card(player_card1)
         self.player.add_card(player_card2)
 
-        self.dealer.add_card(player_card1)
-        self.dealer.add_card(player_card2)
+        self.dealer.add_card(dealer_card1)
+        self.dealer.add_card(dealer_card2)
 
-    # TODO impement this method...
+    # TODO implement this method...
     def action_input(self, action):
         # dealer action
         if self.dealer.value < 17:
@@ -51,14 +52,23 @@ class Game():
         # if we haven't returned, game is not over, continue game flow
         return False
 
-    def check_game_over(self) -> bool:
+    def check_game_over(self):
         # check if player over 21
-        if self.dealer.value > 21 and self.player.value > 21:
-            return "tie"
+        if self.player.value > 21 or self.dealer.value > 21:
+            return True
 
         else:
             return False
 
-    def get_winner(self) -> str:
+    def get_winner(self):
         """This function returns the winner of the game"""
         self.game_over = True
+
+        if self.dealer.value > 21 and self.player.value > 21:
+            return "tie"
+        if self.dealer.value == self.player.value:
+            return "tie"
+        if self.dealer.value > self.player.value:
+            return "dealer wins"
+        if self.dealer.value < self.player.value:
+            return "player wins"
