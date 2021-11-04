@@ -1,3 +1,4 @@
+from typing import Dict
 from flask import Flask, request
 from lib.create_game_id import create_game_id
 from game import Game
@@ -6,7 +7,7 @@ import logging
 app = Flask(__name__)
 
 # this is to keep track of all games, key is an id, value is the game...
-games = {}
+games: Dict[int, Game] = {}
 
 
 @app.route('/api/start')
@@ -17,8 +18,6 @@ def start():
     id = create_game_id(games)
 
     games[id] = id
-
-    return {'gameId': id}
 
     # create the new game, passing in the id
     game = Game(id)
@@ -36,10 +35,10 @@ def start():
     return {
         'player': {
             # TODO this needs to be turned into json by using the to_json card method
-            'cards': player_cards
+            "cards": game.player.cards_as_json()
         },
         'dealer': {
-            'cards': dealer_cards
+            'cards': game.dealer.cards_as_json()
         },
         'game_id': id
     }
@@ -70,11 +69,14 @@ def game_action(game_id):
     data = request.get_json()
 
     # call necessary functions
-    games[game_id].game_flow(data.action)
+    status = games[game_id].action_input(data.action)
 
-    # return relevant information
+    if status != False:
+        # return winner
+        return "game over"
 
-    return "hello world"
+    # return newly dealt cards
+    return "new cards"
 
 
 if __name__ == '__main__':

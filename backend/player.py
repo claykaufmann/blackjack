@@ -18,6 +18,4 @@ class Player:
         return value
 
     def cards_as_json(self):
-        return {
-            "cards": [card.json() for card in self.cards]
-        }
+        return [card.json() for card in self.cards]
