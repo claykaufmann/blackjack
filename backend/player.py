@@ -5,10 +5,10 @@ import json
 
 class Player:
 
-    def __init__(self, isDealer: bool) -> None:
+    def __init__(self, dealer: bool) -> None:
         # self.player = Player
         self.cards = []
-        self.is_dealer = isDealer
+        self.is_dealer = dealer
         self.value = 0
 
     def playerValue(cards):
