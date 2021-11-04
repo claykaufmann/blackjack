@@ -1,9 +1,14 @@
+import json
+
 # player class
+
+
 class Player:
-    def __init__(self, is_dealer: bool) -> None:
+
+    def __init__(self, dealer: bool) -> None:
         # self.player = Player
         self.cards = []
-        self.is_dealer = is_dealer
+        self.is_dealer = dealer
         self.value = 0
 
     def add_card(self, card):
