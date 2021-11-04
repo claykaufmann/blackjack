@@ -10,6 +10,8 @@ const App = () => {
 
   const [returnData, setReturnData] = useState('');
 
+  const [playerCards, setPlayerCards] = useState(0);
+
   const sendData = (event) => {
     event.preventDefault();
 
@@ -38,7 +40,8 @@ const App = () => {
     fetch('/api/start')
       .then((res) => res.json())
       .then((data) => {
-        setGameId(data.gameId);
+        setGameId(data.game_id);
+        setPlayerCards(data.player.cards);
       });
 
     setGameStart(true);
@@ -55,6 +58,7 @@ const App = () => {
               Send Data!
             </button>
             <p>{returnData}</p>
+            <p>{playerCards}</p>
           </div>
         ) : (
           <button type="button" onClick={gameStart}>
