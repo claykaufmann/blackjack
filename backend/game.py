@@ -10,8 +10,8 @@ class Game():
     def __init__(self, id) -> None:
         self.id = id
         # TODO have player classes instantiate correctly
-        self.player = Player(is_dealer=False)
-        self.dealer = Player(is_dealer=True)
+        self.player = Player(dealer=False)
+        self.dealer = Player(dealer=True)
         self.deck = Deck()
         self.game_over = False
 
