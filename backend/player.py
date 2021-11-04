@@ -14,3 +14,6 @@ class Player:
     def add_card(self, card):
         self.cards.append(card)
         self.value += card.value
+
+    def cards_as_json(self):
+        return [card.json() for card in self.cards]
