@@ -33,9 +33,22 @@ class Game():
             new_card = self.deck.deal()
             self.player.add_card(new_card)
 
+        # dealer actions here
+        if self.dealer.value < 17:
+            new_card = self.deck.deal()
+            self.dealer.add_card(new_card)
+
+        # check game conditions
+        game_status = check_end()
+
         # check if player went over 21...
         self.dealer.game_action()
 
         # check if dealer is over 21...
 
         # return game result
+
+    def check_end(self):
+        # check if player over 21
+
+        #
