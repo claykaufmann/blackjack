@@ -12,6 +12,7 @@ class Game():
         self.player = Player(dealer=False)
         self.dealer = Player(dealer=True)
         self.deck = Deck()
+        self.game_over = False
 
     def initial_deal(self):
         player_card1 = self.deck.deal()
@@ -29,26 +30,35 @@ class Game():
 
     # TODO impement this method...
     def action_input(self, action):
-        if action == "hit":
-            new_card = self.deck.deal()
-            self.player.add_card(new_card)
-
-        # dealer actions here
+        # dealer action
         if self.dealer.value < 17:
             new_card = self.deck.deal()
             self.dealer.add_card(new_card)
 
+        if action == "hit":
+            new_card = self.deck.deal()
+            self.player.add_card(new_card)
+        elif action == "stay":
+            return self.get_winner()
+        else:
+            return "error occurred"
+
         # check game conditions
-        game_status = check_end()
+        game_status = self.check_game_over()
+        if game_status == True:
+            return self.get_winner()
 
-        # check if player went over 21...
-        self.dealer.game_action()
+        # if we haven't returned, game is not over, continue game flow
+        return False
 
-        # check if dealer is over 21...
-
-        # return game result
-
-    def check_end(self):
+    def check_game_over(self) -> bool:
         # check if player over 21
+        if self.dealer.value > 21 and self.player.value > 21:
+            return "tie"
 
-        #
+        else:
+            return False
+
+    def get_winner(self) -> str:
+        """This function returns the winner of the game"""
+        self.game_over = True
