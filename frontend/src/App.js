@@ -1,16 +1,22 @@
 import * as React from 'react';
 import { useState } from 'react';
+import Player from './Player';
 import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
   const [gameId, setGameId] = useState(0);
 
+  const [gameStatus, setGameStatus] = useState(false);
+
+  const [players, setPlayers] = useState(0);
+
+  const [playerCards, setPlayerCards] = useState(0);
+
   const [gameHasStarted, setGameStart] = useState(false);
 
+  // TODO: remove this when further in development
   const [returnData, setReturnData] = useState('');
-
-  // const [playerCards, setPlayerCards] = useState(0);
 
   const sendData = (event) => {
     event.preventDefault();
@@ -57,6 +63,8 @@ const App = () => {
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
           <div>
+            <Player value={players.dealer.value} cards={cards.dealer} />
+            <Player value={players.player.value} cards={cards.player} />
             <button type="button" onClick={sendData}>
               Send Data!
             </button>
