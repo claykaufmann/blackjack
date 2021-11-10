@@ -30,7 +30,11 @@ class Game():
         self.dealer.add_card(dealer_card2)
 
     # TODO implement this method...
+    
     def action_input(self, action):
+        """
+        returns true if game over, false if game not over
+        """
         # dealer action
         if self.dealer.value < 17:
             new_card = self.deck.deal()
