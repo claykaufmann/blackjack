@@ -63,8 +63,8 @@ const App = () => {
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
           <div>
-            <Player value={players.dealer.value} cards={cards.dealer} />
-            <Player value={players.player.value} cards={cards.player} />
+            <Player value={players.dealer.value} cards={playerCards.dealer} />
+            <Player value={players.player.value} cards={playerCards.player} />
             <button type="button" onClick={sendData}>
               Send Data!
             </button>
