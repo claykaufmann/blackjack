@@ -72,3 +72,9 @@ class Game():
             return "dealer wins"
         if self.dealer.value < self.player.value:
             return "player wins"
+
+    def get_cards(self):
+        return {
+            "player": self.player.cards_as_json(),
+            "dealer": self.dealer.cards_as_json()
+        }
