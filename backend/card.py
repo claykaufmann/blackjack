@@ -8,7 +8,7 @@ class Card:
         return self.value + ' of ' + self.suit
 
     def json(self):
-        return{
+        return {
             "value": self.value,
             "suit": self.suit
         }
