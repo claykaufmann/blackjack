@@ -82,9 +82,17 @@ def game_action(game_id):
         "gameStatus": game_over
     }
 
-@app.route('test')
+@app.route('/api/make-bet')
+def make_bet():
+    data = request.get_json()
+
+    bet = data.bet
+
+    # make call to game bet functionality here
+
+@app.route('/test')
 def test():
-    game = Game()
+    game = Game(1)
 
     game.initial_deal()
 
