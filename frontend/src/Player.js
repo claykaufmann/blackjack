@@ -1,13 +1,20 @@
 import * as React from 'react';
+import Card from './Card';
 
 const Player = (value, cards) => {
-
-  
+  const items = cards;
+  const playerVal = value;
 
   return (
     <>
-      {for loop here for cards}
-      <Card value={cards.value} suit={cards.suit} />
+      <p>Player hand value is {playerVal}</p>
+      <ul>
+        {items.map((card) => (
+          <li>
+            <Card value={card.value} suit={card.suit} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
