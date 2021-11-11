@@ -32,7 +32,7 @@ class Game():
     # TODO implement this method...
     def action_input(self, action):
         # dealer action
-        if self.dealer.value < 17:
+        while self.dealer.value < 17:
             new_card = self.deck.deal()
             self.dealer.add_card(new_card)
 
@@ -64,11 +64,21 @@ class Game():
         """This function returns the winner of the game"""
         self.game_over = True
 
+        # Player over 21 and dealer 21 or under
+        if self.player.value > 21 and self.dealer.value <= 21:
+            return "dealer wins"
+        # Dealer over 21 and player 21 or under
+        if self.dealer.value > 21 and self.player.value <= 21:
+            return "player wins"
+        # Both dealer and player over 21
         if self.dealer.value > 21 and self.player.value > 21:
             return "tie"
+        # Dealer and player same value
         if self.dealer.value == self.player.value:
             return "tie"
+        # Dealer higher value
         if self.dealer.value > self.player.value:
             return "dealer wins"
+        # Player higher value
         if self.dealer.value < self.player.value:
             return "player wins"

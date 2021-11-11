@@ -5,7 +5,8 @@ class Card:
         self.value = value
     
     def to_string(self):
-        return self.value + ' of ' + self.suit
+        s = str(self.value) + " of " + self.suit
+        return s
 
     def json(self):
         return{
