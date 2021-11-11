@@ -36,7 +36,7 @@ class Game():
         returns true if game over, false if game not over
         """
         # dealer action
-        while self.dealer.value < 17:
+        if self.dealer.value < 17:
             new_card = self.deck.deal()
             self.dealer.add_card(new_card)
 
