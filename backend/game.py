@@ -30,7 +30,11 @@ class Game():
         self.dealer.add_card(dealer_card2)
 
     # TODO implement this method...
+    
     def action_input(self, action):
+        """
+        returns true if game over, false if game not over
+        """
         # dealer action
         while self.dealer.value < 17:
             new_card = self.deck.deal()
@@ -82,3 +86,9 @@ class Game():
         # Player higher value
         if self.dealer.value < self.player.value:
             return "player wins"
+
+    def get_cards(self):
+        return {
+            "player": self.player.cards_as_json(),
+            "dealer": self.dealer.cards_as_json()
+        }

@@ -9,7 +9,7 @@ class Card:
         return s
 
     def json(self):
-        return{
+        return {
             "value": self.value,
             "suit": self.suit
         }

@@ -10,16 +10,21 @@ const App = () => {
 
   const [returnData, setReturnData] = useState('');
 
+  // const [playerCards, setPlayerCards] = useState(0);
+
   const sendData = (event) => {
     event.preventDefault();
 
-    // FIXME: this is not sending data correctly, flask not receiving data
     fetch(`api/test_game/${gameId}`, {
       method: 'POST',
-      body: {
-        name: 'Hi!',
-        action: 'hit',
+      type: 'JSON',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        test: 'Hi!',
+        action: 'hit',
+      }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -38,7 +43,8 @@ const App = () => {
     fetch('/api/start')
       .then((res) => res.json())
       .then((data) => {
-        setGameId(data.gameId);
+        setGameId(data.game_id);
+        // setPlayerCards(data.player.cards);
       });
 
     setGameStart(true);
@@ -55,6 +61,7 @@ const App = () => {
               Send Data!
             </button>
             <p>{returnData}</p>
+            {/* <p>{playerCards}</p> */}
           </div>
         ) : (
           <button type="button" onClick={gameStart}>
