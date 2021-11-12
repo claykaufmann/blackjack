@@ -29,6 +29,8 @@ class Game():
         self.dealer.add_card(dealer_card1)
         self.dealer.add_card(dealer_card2)
 
+        self.dealer.set_card_visiblity()
+
     # TODO implement this method...
     
     def action_input(self, action):

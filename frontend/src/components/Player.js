@@ -13,7 +13,7 @@ const Player = (props) => {
         {playerName} hand value is {value}
       </p>
       {cards.map((card) => (
-        <Card value={card[0]} suit={card[1]} />
+        <Card value={card[0]} suit={card[1]} visibility={card[2]} />
       ))}
     </>
   );

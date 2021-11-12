@@ -3,6 +3,10 @@ class Card:
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
+        self.visible = True
+    
+    def change_visiblity(self, visibility):
+        self.visible = visibility
     
     def to_string(self):
         s = str(self.value) + " of " + self.suit
@@ -14,5 +18,6 @@ class Card:
         """
         return [
             self.value,
-            self.suit
+            self.suit,
+            self.visible
         ]
