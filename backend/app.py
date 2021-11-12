@@ -28,17 +28,15 @@ def start():
     # get initial deal
     game.initial_deal()
 
-    # return game id, and cards to JS
-    player_cards = game.player.cards
-    dealer_cards = game.dealer.cards
-
     return {
         'player': {
             # TODO this needs to be turned into json by using the to_json card method
-            "cards": game.player.cards_as_json()
+            "cards": game.player.cards_as_json(),
+            "handValue": game.player.value
         },
         'dealer': {
-            'cards': game.dealer.cards_as_json()
+            'cards': game.dealer.cards_as_json(),
+            "handValue": game.dealer.value
         },
         'game_id': id
     }

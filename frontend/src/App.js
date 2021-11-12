@@ -1,22 +1,32 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Player from './Player';
 import logo from './logo.svg';
 import './App.css';
+// import Player from './components/Player';
+import Card from './components/Card';
 
 const App = () => {
   const [gameId, setGameId] = useState(0);
 
-  const [gameStatus, setGameStatus] = useState(false);
+  // const [gameStatus, setGameStatus] = useState(false);
+  const [playerCards, setPlayerCards] = useState([]);
+  // const [dealerCards, setDealerCards] = useState([]);
 
-  const [players, setPlayers] = useState(0);
-
-  const [playerCards, setPlayerCards] = useState(0);
+  // const [playerValue, setPlayerValue] = useState(0);
+  // const [dealerValue, setDealerValue] = useState(0);
 
   const [gameHasStarted, setGameStart] = useState(false);
 
   // TODO: remove this when further in development
   const [returnData, setReturnData] = useState('');
+
+  const updateGameState = (data) => {
+    setPlayerCards(data.player.cards);
+    // setDealerCards(data.dealer.cards);
+
+    // setPlayerValue(data.player.value);
+    // setDealerValue(data.dealer.value);
+  };
 
   const sendData = (event) => {
     event.preventDefault();
@@ -38,6 +48,12 @@ const App = () => {
       });
   };
 
+  // const sendAction = (event) => {
+  //   event.preventDefault();
+
+  //   // api call here
+  // };
+
   const gameStart = (event) => {
     // check if the game has already started
     if (gameHasStarted) {
@@ -50,7 +66,10 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         setGameId(data.game_id);
-        // setPlayerCards(data.player.cards);
+        // setGameStatus(true);
+
+        // set game status
+        updateGameState(data);
       });
 
     setGameStart(true);
@@ -63,13 +82,16 @@ const App = () => {
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
           <div>
-            <Player value={players.dealer.value} cards={playerCards.dealer} />
-            <Player value={players.player.value} cards={playerCards.player} />
             <button type="button" onClick={sendData}>
               Send Data!
             </button>
+
+            {/* <Player value={dealerValue} cards={dealerCards} />
+            <Player value={playerValue} cards={playerCards} /> */}
+
+            <Card value={playerCards[0].value} />
+
             <p>{returnData}</p>
-            {/* <p>{playerCards}</p> */}
           </div>
         ) : (
           <button type="button" onClick={gameStart}>
