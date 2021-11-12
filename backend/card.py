@@ -8,7 +8,10 @@ class Card:
         return self.value + ' of ' + self.suit
 
     def json(self):
-        return {
-            "value": self.value,
-            "suit": self.suit
-        }
+        """
+        returns array of card info, index 0 being value, index 1 being suit
+        """
+        return [
+            self.value,
+            self.suit
+        ]

@@ -16,6 +16,5 @@ class Player:
         self.value += card.value
 
     def cards_as_json(self):
-        # HACK: this needs to be changed to card.json() instead of card.value
         # handle change in react
-        return [card.value for card in self.cards]
+        return [card.json() for card in self.cards]

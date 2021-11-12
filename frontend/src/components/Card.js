@@ -1,10 +1,17 @@
 import * as React from 'react';
 
-const Card = (value, suit) => (
-  <>
-    <p>The card value is: {value}</p>
-    <p>The card suit is: {suit}</p>
-  </>
-);
+const Card = (props) => {
+  const data = props;
+  const { value } = data;
+  const { suit } = data;
+
+  return (
+    <>
+      <p>
+        Card value: {value}, card suit: {suit}
+      </p>
+    </>
+  );
+};
 
 export default Card;

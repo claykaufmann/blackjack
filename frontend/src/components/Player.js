@@ -1,20 +1,20 @@
 import * as React from 'react';
 import Card from './Card';
 
-const Player = (value, items) => {
-  const cards = items;
-  const playerVal = value;
+const Player = (props) => {
+  const data = props;
+  const { cards } = data;
+  const { value } = data;
+  const { playerName } = data;
 
   return (
     <>
-      <p>Player hand value is {playerVal}</p>
-      <ul>
-        {cards.map((card) => (
-          <li>
-            <Card value={card.value} suit={card.suit} />
-          </li>
-        ))}
-      </ul>
+      <p>
+        {playerName} hand value is {value}
+      </p>
+      {cards.map((card) => (
+        <Card value={card[0]} suit={card[1]} />
+      ))}
     </>
   );
 };

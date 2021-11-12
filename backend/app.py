@@ -32,11 +32,11 @@ def start():
         'player': {
             # TODO this needs to be turned into json by using the to_json card method
             "cards": game.player.cards_as_json(),
-            "handValue": game.player.value
+            "value": game.player.value
         },
         'dealer': {
             'cards': game.dealer.cards_as_json(),
-            "handValue": game.dealer.value
+            "value": game.dealer.value
         },
         'game_id': id
     }

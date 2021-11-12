@@ -2,30 +2,35 @@ import * as React from 'react';
 import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import Player from './components/Player';
-import Card from './components/Card';
+import Player from './components/Player';
 
 const App = () => {
+  // general game states
   const [gameId, setGameId] = useState(0);
-
-  // const [gameStatus, setGameStatus] = useState(false);
-  const [playerCards, setPlayerCards] = useState([]);
-  // const [dealerCards, setDealerCards] = useState([]);
-
-  // const [playerValue, setPlayerValue] = useState(0);
-  // const [dealerValue, setDealerValue] = useState(0);
-
   const [gameHasStarted, setGameStart] = useState(false);
+  // const [gameStatus, setGameStatus] = useState(false);
+
+  // player and dealer card states
+  const [playerCards, setPlayerCards] = useState([]);
+  const [dealerCards, setDealerCards] = useState([]);
+
+  // player and dealer hand value states
+  const [playerValue, setPlayerValue] = useState(0);
+  const [dealerValue, setDealerValue] = useState(0);
 
   // TODO: remove this when further in development
   const [returnData, setReturnData] = useState('');
 
+  /**
+   * This function handles updating the cards and hand values of the players
+   * @param data data returned from flask
+   */
   const updateGameState = (data) => {
     setPlayerCards(data.player.cards);
-    // setDealerCards(data.dealer.cards);
+    setDealerCards(data.dealer.cards);
 
-    // setPlayerValue(data.player.value);
-    // setDealerValue(data.dealer.value);
+    setPlayerValue(data.player.value);
+    setDealerValue(data.dealer.value);
   };
 
   const sendData = (event) => {
@@ -86,10 +91,9 @@ const App = () => {
               Send Data!
             </button>
 
-            {/* <Player value={dealerValue} cards={dealerCards} />
-            <Player value={playerValue} cards={playerCards} /> */}
-
-            <Card value={playerCards[0].value} />
+            {/* print out players information */}
+            <Player value={playerValue} cards={playerCards} playerName="Player" />
+            <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
 
             <p>{returnData}</p>
           </div>
