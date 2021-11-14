@@ -74,7 +74,7 @@ const App = () => {
         {gameHasStarted ? (
           <div>
             <button type="button" onClick={sendAction}>
-              Send Data!
+              Hit
             </button>
 
             {/* print out players information */}
