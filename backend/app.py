@@ -10,14 +10,12 @@ app = Flask(__name__)
 games: Dict[int, Game] = {}
 
 
-@app.route('/api/start')
+@app.route('/api/start', methods = ['GET'])
 def start():
     """
     this route creates a new game id, and creates a new game, passing in the ID
     """
     id = create_game_id(games)
-
-    games[id] = id
 
     # create the new game, passing in the id
     game = Game(id)
@@ -30,7 +28,6 @@ def start():
 
     return {
         'player': {
-            # TODO this needs to be turned into json by using the to_json card method
             "cards": game.player.cards_as_json(),
             "value": game.player.value
         },
@@ -42,33 +39,20 @@ def start():
     }
 
 
-# @app.route('/api/test_game/<game_id>', methods=['GET', 'POST'])
-# def test_game(game_id):
-#     if int(game_id) not in games.keys():
-#         return {
-#             'error': "Game ID not found"
-#         }
-
-#     data = request.get_json()
-
-#     app.logger.info(data)
-
-#     return {
-#         "body": "hello world"
-#     }
-
-
-@app.route('/api/game_action/<game_id>')
+@app.route('/api/game_action/<game_id>', methods = ['GET', 'POST'])
 def game_action(game_id):
-    if int(game_id) not in games.keys():
+    game_id = int(game_id)
+    if game_id not in games.keys():
         return "fatal error"
 
     # get action json data
     data = request.get_json()
 
+    game = games[game_id]
+
     # call necessary functions
     # game_over true if game is over
-    game_over = games[game_id].action_input(data.action)
+    game_over = game.action_input(data['action'])
 
     if game_over == True:
         # delete game here
@@ -76,8 +60,14 @@ def game_action(game_id):
 
     # return newly dealt cards
     return {
-        "cards": games[game_id].get_cards(),
-        "gameStatus": game_over
+        'player': {
+            "cards": game.player.cards_as_json(),
+            "value": game.player.value
+        },
+        'dealer': {
+            'cards': game.dealer.cards_as_json(),
+            "value": game.dealer.value
+        },
     }
 
 @app.route('/api/make-bet')
@@ -88,18 +78,6 @@ def make_bet():
 
     # make call to game bet functionality here
 
-@app.route('/test')
-def test():
-    game = Game(1)
-
-    game.initial_deal()
-
-    game_over = game.action_input("hit")
-
-    return {
-        "cards": game.get_cards(),
-        "gameStatus": game_over
-    }
 
 
 if __name__ == '__main__':

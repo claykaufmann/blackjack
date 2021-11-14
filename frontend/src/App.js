@@ -18,9 +18,6 @@ const App = () => {
   const [playerValue, setPlayerValue] = useState(0);
   const [dealerValue, setDealerValue] = useState(0);
 
-  // TODO: remove this when further in development
-  const [returnData, setReturnData] = useState('');
-
   /**
    * This function handles updating the cards and hand values of the players
    * @param data data returned from flask
@@ -33,33 +30,27 @@ const App = () => {
     setDealerValue(data.dealer.value);
   };
 
-  const sendData = (event) => {
+  const sendAction = async (event) => {
     event.preventDefault();
+    const playerAction = 'hit';
 
-    fetch(`api/test_game/${gameId}`, {
+    // api call here
+    const res = await fetch(`api/game_action/${gameId}`, {
       method: 'POST',
       type: 'JSON',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        test: 'Hi!',
-        action: 'hit',
+        action: playerAction,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setReturnData(data.game_id);
-      });
+    });
+
+    const data = await res.json();
+    updateGameState(data);
   };
 
-  // const sendAction = (event) => {
-  //   event.preventDefault();
-
-  //   // api call here
-  // };
-
-  const gameStart = (event) => {
+  const gameStart = async (event) => {
     // check if the game has already started
     if (gameHasStarted) {
       return;
@@ -67,15 +58,10 @@ const App = () => {
 
     event.preventDefault();
 
-    fetch('/api/start')
-      .then((res) => res.json())
-      .then((data) => {
-        setGameId(data.game_id);
-        // setGameStatus(true);
-
-        // set game status
-        updateGameState(data);
-      });
+    const res = await fetch('/api/start');
+    const data = await res.json();
+    setGameId(data.game_id);
+    updateGameState(data);
 
     setGameStart(true);
   };
@@ -87,15 +73,13 @@ const App = () => {
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
           <div>
-            <button type="button" onClick={sendData}>
+            <button type="button" onClick={sendAction}>
               Send Data!
             </button>
 
             {/* print out players information */}
             <Player value={playerValue} cards={playerCards} playerName="Player" />
             <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
-
-            <p>{returnData}</p>
           </div>
         ) : (
           <button type="button" onClick={gameStart}>

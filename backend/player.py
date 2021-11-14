@@ -22,7 +22,6 @@ class Player:
 
     def cards_as_json(self):
         # handle change in react
-        print([card.json() for card in self.cards])
         return [card.json() for card in self.cards]
 
     def set_card_visiblity(self):
