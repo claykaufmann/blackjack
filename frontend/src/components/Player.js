@@ -3,9 +3,7 @@ import Card from './Card';
 
 const Player = (props) => {
   const data = props;
-  const { cards } = data;
-  const { value } = data;
-  const { playerName } = data;
+  const { cards, value, playerName } = data;
 
   return (
     <>
