@@ -9,7 +9,7 @@ const Card = (props) => {
   if (visibility === false) {
     card = (
       <>
-        <p className="Card-backside">backside of card</p>
+        <p className="Card-backside" />
       </>
     );
   } else {
