@@ -16,6 +16,10 @@
   flex-direction: row;
 }
 
-.Card-main {
+.Card-front {
+  padding-left: 1rem;
+}
+
+.Card-backside {
   padding-left: 1rem;
 }

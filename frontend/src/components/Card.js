@@ -7,20 +7,22 @@ const Card = (props) => {
   let card = <></>;
 
   if (visibility === false) {
-    card = <>backside of card</>;
+    card = (
+      <>
+        <p className="Card-backside">backside of card</p>
+      </>
+    );
   } else {
     card = (
       <>
-        {value} of {suit}
+        <p className="Card-front">
+          {value} of {suit}
+        </p>
       </>
     );
   }
 
-  return (
-    <div className="Card">
-      <p className="Card-main">{card}</p>
-    </div>
-  );
+  return <div className="Card">{card}</div>;
 };
 
 export default Card;
