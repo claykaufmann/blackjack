@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Player from './components/Player';
 
@@ -69,7 +68,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <p>CS 205 Final Project Blackjack!</p>
+      </header>
+      <main className="App-main">
         <p>The game ID is {gameId}</p>
         {gameHasStarted ? (
           <div>
@@ -86,7 +87,7 @@ const App = () => {
             Start Game!
           </button>
         )}
-      </header>
+      </main>
     </div>
   );
 };

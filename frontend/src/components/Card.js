@@ -4,16 +4,22 @@ const Card = (props) => {
   const data = props;
   const { value, suit, visibility } = data;
 
+  let card = <></>;
+
   if (visibility === false) {
-    return <p>backside of card</p>;
+    card = <>backside of card</>;
+  } else {
+    card = (
+      <>
+        {value} of {suit}
+      </>
+    );
   }
 
   return (
-    <>
-      <p>
-        {value} of {suit}
-      </p>
-    </>
+    <div className="Card">
+      <p className="Card-main">{card}</p>
+    </div>
   );
 };
 
