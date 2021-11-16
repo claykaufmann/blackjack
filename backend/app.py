@@ -10,12 +10,14 @@ app = Flask(__name__)
 games: Dict[int, Game] = {}
 
 
-@app.route('/api/start', methods = ['GET'])
+@app.route('/api/start')
 def start():
     """
     this route creates a new game id, and creates a new game, passing in the ID
     """
     id = create_game_id(games)
+
+    games[id] = id
 
     # create the new game, passing in the id
     game = Game(id)
@@ -25,6 +27,10 @@ def start():
 
     # get initial deal
     game.initial_deal()
+
+    # return game id, and cards to JS
+    player_cards = game.player.cards
+    dealer_cards = game.dealer.cards
 
     return {
         'player': {
@@ -39,45 +45,39 @@ def start():
     }
 
 
-@app.route('/api/game_action/<game_id>', methods = ['GET', 'POST'])
+@app.route('/api/test_game/<game_id>', methods=['GET', 'POST'])
+def test_game(game_id):
+    if int(game_id) not in games.keys():
+        return {
+            'error': "Game ID not found"
+        }
+
+    data = request.get_json()
+
+    app.logger.info(data)
+
+    return {
+        "body": "hello world"
+    }
+
+
+@app.route('/api/game_action/<game_id>')
 def game_action(game_id):
-    game_id = int(game_id)
-    if game_id not in games.keys():
+    if int(game_id) not in games.keys():
         return "fatal error"
 
     # get action json data
     data = request.get_json()
 
-    game = games[game_id]
-
     # call necessary functions
-    # game_over true if game is over
-    game_over = game.action_input(data['action'])
+    status = games[game_id].action_input(data.action)
 
-    if game_over == True:
-        # delete game here
-        pass
+    if status != False:
+        # return winner
+        return "game over"
 
     # return newly dealt cards
-    return {
-        'player': {
-            "cards": game.player.cards_as_json(),
-            "value": game.player.value
-        },
-        'dealer': {
-            'cards': game.dealer.cards_as_json(),
-            "value": game.dealer.value
-        },
-    }
-
-@app.route('/api/make-bet')
-def make_bet():
-    data = request.get_json()
-
-    bet = data.bet
-
-    # make call to game bet functionality here
-
+    return "new cards"
 
 
 if __name__ == '__main__':
