@@ -20,8 +20,10 @@ class Player:
         self.cards.append(card)
         self.value += card.value
 
-        #if card.value is Ace, append value by 11 (self.value += 11)
-        # else self.value += card.value
+        if (card.value == "Ace"):
+            self.value += 11
+        else:
+            self.value += card.value
 
     def cards_as_json(self):
         # handle change in react
