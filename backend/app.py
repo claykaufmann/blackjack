@@ -60,24 +60,44 @@ def test_game(game_id):
         "body": "hello world"
     }
 
-
-@app.route('/api/game_action/<game_id>')
+@app.route('/api/game_action/<game_id>', methods = ['GET', 'POST'])
 def game_action(game_id):
-    if int(game_id) not in games.keys():
+    game_id = int(game_id)
+    if game_id not in games.keys():
         return "fatal error"
 
     # get action json data
     data = request.get_json()
 
-    # call necessary functions
-    status = games[game_id].action_input(data.action)
+    game = games[game_id]
 
-    if status != False:
-        # return winner
-        return "game over"
+    # call necessary functions
+    # game_over true if game is over
+    game_over = game.action_input(data['action'])
+
+    if game_over == True:
+        # delete game here
+        pass
 
     # return newly dealt cards
-    return "new cards"
+    return {
+        'player': {
+            "cards": game.player.cards_as_json(),
+            "value": game.player.value
+        },
+        'dealer': {
+            'cards': game.dealer.cards_as_json(),
+            "value": game.dealer.value
+        },
+    }
+
+@app.route('/api/make-bet')
+def make_bet():
+    data = request.get_json()
+
+    bet = data.bet
+
+    # make call to game bet functionality here
 
 
 if __name__ == '__main__':
