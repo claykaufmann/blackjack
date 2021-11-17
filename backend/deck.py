@@ -17,9 +17,9 @@ class Deck:
 
     # create a deck of cards using Card class
     def buildDeck(self):
-        # iterate through suits and then values 1 - 14
+        # iterate through suits and then values 2 - 14
         for s in suitsList:
-            for i in range(2, 14):
+            for i in range(2, 15):
                 # anything 10 or higher is automatically a 10
                 if i <= 9:
                     self.cards.append(Card(s, i))
