@@ -18,10 +18,14 @@ class Player:
             card.change_visiblity(False)
 
         self.cards.append(card)
-        self.value += card.value
 
+        # If card is Ace add 11
         if (card.value == "Ace"):
             self.value += 11
+            # If that would lead to player busting, turn it to 1 instead
+            if self.value > 21:
+                self.value -= 10
+        # Every other card
         else:
             self.value += card.value
 
