@@ -5,6 +5,29 @@ const Card = (props) => {
   const { value, suit, visibility } = data;
 
   let card = <></>;
+  /* switch case for suits */
+  // let cSuit = '';
+
+  // switch(suit) {
+  //   case 'Hearts':
+  //     cSuit = <>&hearts</>;
+  //     break;
+
+  //   case 'Diamonds':
+  //     cSuit = <>&diams</>;
+  //     break;
+
+  //   case 'Spades':
+  //     cSuit = <>&spades</>;
+  //     break;
+
+  //   case 'Clubs':
+  //     cSuit = <>&clubs</>;
+  //     break;
+
+  //   default:
+  //     break;
+  // }
 
   if (visibility === false) {
     card = (
