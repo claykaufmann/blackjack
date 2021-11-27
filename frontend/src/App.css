@@ -17,9 +17,23 @@
 }
 
 .Card-front {
-  padding-left: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+  /*padding-left: 1rem; */
+  color: black;
+  background-color: aliceblue;
+  height: 10rem;
+  width: 7.5rem;
+  margin-right: 1rem;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
 }
 
 .Card-backside {
   padding-left: 1rem;
 }
+
