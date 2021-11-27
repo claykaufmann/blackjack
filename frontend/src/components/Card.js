@@ -38,9 +38,11 @@ const Card = (props) => {
   } else {
     card = (
       <>
-        <p className="Card-front">
-          {value} of {suit}
-        </p>
+        <div className="Card-front">
+          <div className="Top-value"> {value} </div>
+          <div className="Suit"> {suit} </div>
+          <div className="Bottom-value"> {value} </div>
+        </div>
       </>
     );
   }

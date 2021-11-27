@@ -17,20 +17,32 @@
 }
 
 .Card-front {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-  /*padding-left: 1rem; */
+  display: inline-block;
+  position: relative;
+  width: 5em;
+  height: 7em;
+  background-color: white;
   color: black;
-  background-color: aliceblue;
-  height: 10rem;
-  width: 7.5rem;
-  margin-right: 1rem;
+  box-shadow: 0 0.0625em 0.125em rgba(0, 0, 0, 0.15);
+  border-radius: 0.25em;
+  margin-right: 0.5em;
 }
 
-/* Add rounded corners to the top left and the top right corner of the image */
-img {
-  border-radius: 5px 5px 0 0;
+.Card-Front.Top-value {
+  position: absolute;
+  top: 0.5em;
+  left: 0.75em;
+}
+
+.Card-front.Bottom-Value {
+  position: absolute;
+  top: 6.5em;
+  left: 4.25em;
+  transform: rotate(180deg);
+}
+
+.Suit {
+  margin-left: 0.5em;
 }
 
 .Card-backside {
