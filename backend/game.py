@@ -40,7 +40,7 @@ class Game():
             new_card = self.deck.deal()
             self.player.add_card(new_card)
         elif action == "stay":
-            return self.get_winner()
+            return True
         else:
             return "error occurred"
 

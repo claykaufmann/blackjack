@@ -56,28 +56,37 @@ def game_action(game_id):
 
     game = games[game_id]
 
+    print(data)
+
     # call necessary functions
     # game_over true if game is over
     game_over = game.action_input(data['action'])
 
     if game_over == True:
-        # delete game here
-        games[game_id] = None
-
         # set all cards to appear for user feedback
         game.dealer.dealer_show_all()
+
+        player_cards = game.player.cards_as_json()
+        player_value = game.player.value
+
+        dealer_cards = game.dealer.cards_as_json()
+        dealer_value = game.dealer.value
+
+        game_winner = game.get_winner()
+
+        games[game_id] = None
 
         return {
             "status": False,
             'player': {
-                "cards": game.player.cards_as_json(),
-                "value": game.player.value
+                "cards": player_cards,
+                "value": player_value
             },
             'dealer': {
-                'cards': game.dealer.cards_as_json(),
-                "value": game.dealer.value
+                'cards': dealer_cards,
+                "value": dealer_value
             },
-            "winner": game.get_winner()
+            "winner": game_winner
         }
 
     # return newly dealt cards

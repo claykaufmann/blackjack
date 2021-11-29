@@ -36,7 +36,7 @@ const App = () => {
 
   const sendAction = async (event) => {
     event.preventDefault();
-    const playerAction = 'hit';
+    const playerAction = event.target.value;
 
     // api call here
     const res = await fetch(`api/game_action/${gameId}`, {
@@ -89,8 +89,12 @@ const App = () => {
   } else if (gameHasStarted && gameStatus) {
     game = (
       <div>
-        <button type="button" onClick={sendAction}>
+        <button type="button" onClick={sendAction} value="hit">
           Hit
+        </button>
+
+        <button type="button" onClick={sendAction} value="stay">
+          Stay
         </button>
 
         {/* print out players information */}
