@@ -7,7 +7,7 @@ class Card:
     
     def change_visiblity(self, visibility):
         self.visible = visibility
-    
+     
     def to_string(self):
         s = str(self.value) + " of " + self.suit
         return s

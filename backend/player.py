@@ -14,11 +14,15 @@ class Player:
         self.value = 0
 
     def add_card(self, card: Card):
+        # TODO: this card visibility is incorrect, dealers third card is visible
         if self.is_dealer == True and len(self.cards) > 2:
             card.change_visiblity(False)
 
         self.cards.append(card)
-        self.value += card.value
+        if (card.value == "Ace"):
+            self.value += 11
+        else:
+            self.value += card.value
 
     def cards_as_json(self):
         # handle change in react
