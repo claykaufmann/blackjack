@@ -29,6 +29,32 @@ def start():
     game.initial_deal()
 
     # return game id, and cards to JS
+    if game.player.value == 21:
+        game.dealer.dealer_show_all()
+
+        player_cards = game.player.cards_as_json()
+        player_value = game.player.value
+
+        dealer_cards = game.dealer.cards_as_json()
+        dealer_value = game.dealer.value
+
+        game_winner = game.get_winner()
+
+        games[id] = None
+
+        return {
+            "status": False,
+            'player': {
+                "cards": player_cards,
+                "value": player_value
+            },
+            'dealer': {
+                'cards': dealer_cards,
+                "value": dealer_value
+            },
+            "winner": game_winner
+        }
+    
 
     return {
         'status': True,
