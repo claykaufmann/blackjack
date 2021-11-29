@@ -14,8 +14,9 @@ class Player:
         self.value = 0
 
     def add_card(self, card: Card):
-        # TODO: this card visibility is incorrect, dealers third card is visible
-        if self.is_dealer == True and len(self.cards) > 2:
+        if self.is_dealer == True and len(self.cards) == 0:
+            card.change_visiblity(True)
+        elif self.is_dealer == True and len(self.cards) > 0:
             card.change_visiblity(False)
 
         self.cards.append(card)
@@ -34,10 +35,11 @@ class Player:
         # handle change in react
         return [card.json() for card in self.cards]
 
-    def set_card_visiblity(self):
+    def dealer_show_all(self):
         """
         this function sets the dealers first card to be visible, and all cards insvisible
         """
         if self.is_dealer == True:
-            self.cards[len(self.cards) - 1].change_visiblity(False)
+            for card in self.cards:
+                card.change_visiblity(True)
 

@@ -9,7 +9,6 @@ Game class represents a game of blackjack
 class Game():
     def __init__(self, id) -> None:
         self.id = id
-        # TODO have player classes instantiate correctly
         self.player = Player(dealer=False)
         self.dealer = Player(dealer=True)
         self.deck = Deck()
@@ -22,16 +21,11 @@ class Game():
         dealer_card1 = self.deck.deal()
         dealer_card2 = self.deck.deal()
 
-        # TODO update this to correctly add cards when methods are implemented
         self.player.add_card(player_card1)
         self.player.add_card(player_card2)
 
         self.dealer.add_card(dealer_card1)
         self.dealer.add_card(dealer_card2)
-
-        self.dealer.set_card_visiblity()
-
-    # TODO implement this method...
     
     def action_input(self, action):
         """
@@ -51,12 +45,10 @@ class Game():
             return "error occurred"
 
         # check game conditions
-        game_status = self.check_game_over()
-        if game_status == True:
-            return self.get_winner()
+        game_over = self.check_game_over()
 
         # if we haven't returned, game is not over, continue game flow
-        return False
+        return game_over
 
     def check_game_over(self):
         # check if player over 21
@@ -72,10 +64,14 @@ class Game():
 
         # Player over 21 and dealer 21 or under
         if self.player.value > 21 and self.dealer.value <= 21:
-            return "dealer wins"
+            return "dealer"
         # Dealer over 21 and player 21 or under
         if self.dealer.value > 21 and self.player.value <= 21:
-            return "player wins"
+            return "player"
+        if self.player.value == 21 and self.dealer.value < self.player.value:
+            return "player"
+        if self.dealer.value == 21 and self.player.value < self.dealer.value:
+            return "dealer"
         # Both dealer and player over 21
         if self.dealer.value > 21 and self.player.value > 21:
             return "tie"
@@ -84,10 +80,10 @@ class Game():
             return "tie"
         # Dealer higher value
         if self.dealer.value > self.player.value:
-            return "dealer wins"
+            return "dealer"
         # Player higher value
         if self.dealer.value < self.player.value:
-            return "player wins"
+            return "player"
 
     def get_cards(self):
         return {

@@ -29,10 +29,9 @@ def start():
     game.initial_deal()
 
     # return game id, and cards to JS
-    player_cards = game.player.cards
-    dealer_cards = game.dealer.cards
 
     return {
+        'status': True,
         'player': {
             "cards": game.player.cards_as_json(),
             "value": game.player.value
@@ -41,24 +40,10 @@ def start():
             'cards': game.dealer.cards_as_json(),
             "value": game.dealer.value
         },
-        'game_id': id
+        'game_id': id,
+        'winner': False
     }
 
-
-@app.route('/api/test_game/<game_id>', methods=['GET', 'POST'])
-def test_game(game_id):
-    if int(game_id) not in games.keys():
-        return {
-            'error': "Game ID not found"
-        }
-
-    data = request.get_json()
-
-    app.logger.info(data)
-
-    return {
-        "body": "hello world"
-    }
 
 @app.route('/api/game_action/<game_id>', methods = ['GET', 'POST'])
 def game_action(game_id):
@@ -77,10 +62,27 @@ def game_action(game_id):
 
     if game_over == True:
         # delete game here
-        pass
+        games[game_id] = None
+
+        # set all cards to appear for user feedback
+        game.dealer.dealer_show_all()
+
+        return {
+            "status": False,
+            'player': {
+                "cards": game.player.cards_as_json(),
+                "value": game.player.value
+            },
+            'dealer': {
+                'cards': game.dealer.cards_as_json(),
+                "value": game.dealer.value
+            },
+            "winner": game.get_winner()
+        }
 
     # return newly dealt cards
     return {
+        'status': True, 
         'player': {
             "cards": game.player.cards_as_json(),
             "value": game.player.value
@@ -89,6 +91,7 @@ def game_action(game_id):
             'cards': game.dealer.cards_as_json(),
             "value": game.dealer.value
         },
+        'winner': False
     }
 
 @app.route('/api/make-bet')

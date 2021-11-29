@@ -7,7 +7,9 @@ const App = () => {
   // general game states
   const [gameId, setGameId] = useState(0);
   const [gameHasStarted, setGameStart] = useState(false);
-  // const [gameStatus, setGameStatus] = useState(false);
+  const [gameStatus, setGameStatus] = useState(true);
+
+  const [winner, setWinner] = useState(false);
 
   // player and dealer card states
   const [playerCards, setPlayerCards] = useState([]);
@@ -27,6 +29,9 @@ const App = () => {
 
     setPlayerValue(data.player.value);
     setDealerValue(data.dealer.value);
+
+    setGameStatus(data.status);
+    setWinner(data.winner);
   };
 
   const sendAction = async (event) => {
@@ -65,6 +70,50 @@ const App = () => {
     setGameStart(true);
   };
 
+  const resetGame = () => {
+    // reset game states
+    setGameStart(false);
+
+    // call gameStart
+    gameStart();
+  };
+
+  let game = <></>;
+
+  if (!gameHasStarted) {
+    game = (
+      <button type="button" onClick={gameStart}>
+        Start Game!
+      </button>
+    );
+  } else if (gameHasStarted && gameStatus) {
+    game = (
+      <div>
+        <button type="button" onClick={sendAction}>
+          Hit
+        </button>
+
+        {/* print out players information */}
+        <Player value={playerValue} cards={playerCards} playerName="Player" />
+        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
+      </div>
+    );
+    // game is over, display everything
+  } else {
+    game = (
+      <div>
+        <p>The winner is {winner}</p>
+        <button type="button" onClick={resetGame}>
+          New Game
+        </button>
+
+        {/* print out players information */}
+        <Player value={playerValue} cards={playerCards} playerName="Player" />
+        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -72,21 +121,7 @@ const App = () => {
       </header>
       <main className="App-main">
         <p>The game ID is {gameId}</p>
-        {gameHasStarted ? (
-          <div>
-            <button type="button" onClick={sendAction}>
-              Hit
-            </button>
-
-            {/* print out players information */}
-            <Player value={playerValue} cards={playerCards} playerName="Player" />
-            <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
-          </div>
-        ) : (
-          <button type="button" onClick={gameStart}>
-            Start Game!
-          </button>
-        )}
+        {game}
       </main>
     </div>
   );
