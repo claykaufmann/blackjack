@@ -98,22 +98,31 @@ const App = () => {
         </button>
 
         {/* print out players information */}
-        <Player value={playerValue} cards={playerCards} playerName="Player" />
-        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
+        <Player value={playerValue} cards={playerCards} playerName="Player" gameOver={false} />
+        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" gameOver={false} />
       </div>
     );
     // game is over, display everything
   } else {
+    let displayWinner = '';
+    if (winner === 'player') {
+      displayWinner = 'The winner is you!';
+    } else if (winner === 'dealer') {
+      displayWinner = 'The winner is the dealer!';
+    } else {
+      displayWinner = 'It was a tie!';
+    }
+
     game = (
       <div>
-        <p>The winner is {winner}</p>
+        <p>{displayWinner}</p>
         <button type="button" onClick={resetGame}>
           New Game
         </button>
 
         {/* print out players information */}
-        <Player value={playerValue} cards={playerCards} playerName="Player" />
-        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" />
+        <Player value={playerValue} cards={playerCards} playerName="Player" gameOver />
+        <Player value={dealerValue} cards={dealerCards} playerName="Dealer" gameOver />
       </div>
     );
   }
