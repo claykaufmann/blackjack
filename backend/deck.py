@@ -26,7 +26,7 @@ class Deck:
                 # any card that is an 11 is automatically and Ace
                 # Ace card will be handled in player class
                 elif i == 11:
-                    self.cards.append(Card("Ace", i))
+                    self.cards.append(Card(s, "Ace"))
                 else:
                     self.cards.append(Card(s, 10))
 
