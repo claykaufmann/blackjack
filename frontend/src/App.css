@@ -12,6 +12,12 @@
   color: #920808;
 }
 
+.App-main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .Player-cards {
   align-items: center;
   display: flex;
