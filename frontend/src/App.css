@@ -1,4 +1,5 @@
 .App {
+  align-items: center;
   background-color: #034108;
   min-height: 100vh;
   display: flex;
@@ -12,6 +13,7 @@
 }
 
 .Player-cards {
+  align-items: center;
   display: flex;
   flex-direction: row;
 }
@@ -50,9 +52,8 @@
   top: 1.075em;
   text-align: center;
   font-weight: 600;
-  /* change once suit pictures are in */
   font-size: 2em;
-  left: 0.85em;
+  left: 0.81em;
 }
 
 .Card-backside {
