@@ -47,12 +47,12 @@
 
 .Suit {
   position: absolute;
-  top: 2.75em;
+  top: 1.075em;
   text-align: center;
   font-weight: 600;
   /* change once suit pictures are in */
-  font-size: 1em;
-  left: 0.5em;
+  font-size: 2em;
+  left: 0.85em;
 }
 
 .Card-backside {
