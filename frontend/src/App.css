@@ -66,3 +66,31 @@
   padding-left: 1rem;
 }
 
+.HitStayButtons {
+  padding: 0.4em;
+  font-size: 0.8em;
+  text-align: center;
+  color: black;
+  background-color: whitesmoke;
+  align-items: center;
+  border-radius: 5px;
+  margin: 2em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+}
+
+.HitStayButtons:hover {
+  background: gainsboro;
+}
+
+.NewandStartGameButton {
+  padding: 0.3em;
+  font-size: 1em;
+  text-align: center;
+  color: black;
+  background-color: whitesmoke;
+}
+
+.NewandStartGameButton:hover {
+  background: gainsboro;
+}
