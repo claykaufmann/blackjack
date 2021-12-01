@@ -12,7 +12,7 @@ const Player = (props) => {
   } else if (playerName === 'Player') {
     playerValue = <p>Your hand value is {value}</p>;
   } else if (!gameOver) {
-    playerValue = <p>The dealers visible card:</p>;
+    playerValue = <p>The dealers cards:</p>;
   } else {
     playerValue = <p>The dealers value was {value}, and the dealers cards were:</p>;
   }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+// import backside from '../card.png';
 
 const Card = (props) => {
   const data = props;
@@ -32,7 +33,21 @@ const Card = (props) => {
   if (visibility === false) {
     card = (
       <>
-        <p className="Card-backside" />
+        <div className="Card-front Card-backside-test">
+          <div className="Card-wrapper">
+            <div className="Top-value">
+              {' '}
+              {value}
+              <br /> {cSuit}{' '}
+            </div>
+            <div className="Suit"> {cSuit} </div>
+            <div className="Bottom-value">
+              {' '}
+              {value}
+              <br /> {cSuit}
+            </div>
+          </div>
+        </div>
       </>
     );
   } else {
