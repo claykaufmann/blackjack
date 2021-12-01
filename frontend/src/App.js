@@ -82,18 +82,18 @@ const App = () => {
 
   if (!gameHasStarted) {
     game = (
-      <button type="button" onClick={gameStart}>
+      <button className="NewandStartGameButton" type="button" onClick={gameStart}>
         Start Game!
       </button>
     );
   } else if (gameHasStarted && gameStatus) {
     game = (
       <div>
-        <button type="button" onClick={sendAction} value="hit">
+        <button className="HitStayButtons" type="button" onClick={sendAction} value="hit">
           Hit
         </button>
 
-        <button type="button" onClick={sendAction} value="stay">
+        <button className="HitStayButtons" type="button" onClick={sendAction} value="stay">
           Stay
         </button>
 
@@ -116,7 +116,7 @@ const App = () => {
     game = (
       <div>
         <p>{displayWinner}</p>
-        <button type="button" onClick={resetGame}>
+        <button className="NewandStartGameButton" type="button" onClick={resetGame}>
           New Game
         </button>
 

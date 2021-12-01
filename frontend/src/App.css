@@ -40,7 +40,7 @@
   position: absolute;
   top: 0.1em;
   left: 0.35em;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -48,7 +48,7 @@
   position: absolute;
   bottom: 0.15em;
   right: 0.25em;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
   transform: rotate(180deg);
 }
@@ -73,4 +73,33 @@
 
 .Card-wrapper {
   visibility: hidden;
+}
+
+.HitStayButtons {
+  padding: 0.4em;
+  font-size: 0.8em;
+  text-align: center;
+  color: black;
+  background-color: whitesmoke;
+  align-items: center;
+  border-radius: 5px;
+  margin: 2em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+}
+
+.HitStayButtons:hover {
+  background: gainsboro;
+}
+
+.NewandStartGameButton {
+  padding: 0.3em;
+  font-size: 1em;
+  text-align: center;
+  color: black;
+  background-color: whitesmoke;
+}
+
+.NewandStartGameButton:hover {
+  background: gainsboro;
 }
