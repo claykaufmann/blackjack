@@ -39,9 +39,17 @@ const Card = (props) => {
     card = (
       <>
         <div className="Card-front">
-          <div className="Top-value"> {value} </div>
+          <div className="Top-value">
+            {' '}
+            {value}
+            <br /> {cSuit}{' '}
+          </div>
           <div className="Suit"> {cSuit} </div>
-          <div className="Bottom-value"> {value} </div>
+          <div className="Bottom-value">
+            {' '}
+            {value}
+            <br /> {cSuit}
+          </div>
         </div>
       </>
     );
