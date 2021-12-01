@@ -63,7 +63,16 @@
 }
 
 .Card-backside {
-  padding-left: 1rem;
+  width: 30%;
+}
+
+.Card-backside-test {
+  background-image: url('./card.png');
+  background-size: contain;
+}
+
+.Card-wrapper {
+  visibility: hidden;
 }
 
 .HitStayButtons {
