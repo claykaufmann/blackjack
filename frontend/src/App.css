@@ -1,5 +1,9 @@
 .App {
   align-items: center;
+  background-image: url("pokerTableBackground.png");
+  background-size: cover;                    
+  background-repeat: no-repeat;
+  background-position: center center;
   background-color: #034108;
   min-height: 100vh;
   display: flex;
@@ -83,9 +87,12 @@
   background-color: whitesmoke;
   align-items: center;
   border-radius: 5px;
-  margin: 2em;
-  padding-left: 0.6em;
-  padding-right: 0.6em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  margin-left: 2em;
+  margin-right: 1em;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 
 .HitStayButtons:hover {
