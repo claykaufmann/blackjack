@@ -130,7 +130,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <p>CS 205 Final Project Blackjack!</p>
+        <p> CS 205 Final Project Blackjack!</p>
       </header>
       <main className="App-main">
         <p>The game ID is {gameId}</p>
