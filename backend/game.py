@@ -40,6 +40,9 @@ class Game():
             new_card = self.deck.deal()
             self.player.add_card(new_card)
         elif action == "stay":
+            while self.dealer.value < 17:
+                new_card = self.deck.deal()
+                self.dealer.add_card(new_card)
             return True
         else:
             return "error occurred"
