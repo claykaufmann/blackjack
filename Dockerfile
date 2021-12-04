@@ -1,6 +1,6 @@
 # Build step #1: build the React front end
 # pull official base image
-FROM node:13.12.0-alpine as build-step
+FROM node:16.13-alpine as build-step
 
 # set working directory
 WORKDIR /app
@@ -12,7 +12,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./frontend/package.json ./
 COPY ./frontend/package-lock.json ./
 RUN npm install
-RUN npm install react-scripts@3.4.1 -g
+RUN npm install react-scripts@4.0.3 -g
 
 COPY ./frontend ./
 
