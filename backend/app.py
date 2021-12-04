@@ -100,7 +100,7 @@ def game_action(game_id):
 
         game_winner = game.get_winner()
 
-        games[game_id] = None
+        games.pop(game_id)
 
         return {
             "status": False,
