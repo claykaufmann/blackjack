@@ -9,6 +9,9 @@ app = Flask(__name__, static_folder='../build', static_url_path='/')
 # this is to keep track of all games, key is an id, value is the game...
 games: Dict[int, Game] = {}
 
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 @app.route('/api/start')
 def start():
