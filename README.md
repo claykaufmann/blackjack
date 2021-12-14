@@ -1,4 +1,17 @@
-# CS205 Final Project
+# CS205 Final Project Blackjack
+
+## Project Description
+
+This was the final project for UVM CS 205, Software Engineering.  
+Team members:
+
+- Aidan Siegal
+- Rachel Liston
+- Vincent Lai
+- Clay Kaufmann
+
+The core idea of the project was to implement a Flask server that handled game logic,
+with a React frontend that displayed the game on a public URL. Available at `cs205.claykaufmann.com`
 
 ## Getting Started Development
 
