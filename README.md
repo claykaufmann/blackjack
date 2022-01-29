@@ -11,7 +11,7 @@ Team members:
 - Clay Kaufmann
 
 The core idea of the project was to implement a Flask server that handled game logic,
-with a React frontend that displayed the game on a public URL. Available at `cs205.claykaufmann.com`
+with a React frontend that displayed the game on a public URL.
 
 ## Getting Started Development
 
